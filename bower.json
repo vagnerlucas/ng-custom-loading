@@ -1,0 +1,25 @@
+{
+  "name": "ng-custom-loading",
+  "homepage": "https://github.com/vagnerlucas/ng-custom-loading",
+  "authors": [
+    "Vagner Lucas <vagnerlucas@hotmail.com>"
+  ],
+  "description": "AngularJS directive for loading with customization",
+  "main": "./src/ng-custom-loading.js",
+  "dependencies": {
+        "angular": "^1.0.8"
+  },
+  "keywords": [
+    "AngularJS",
+    "Loading",
+    "Directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
