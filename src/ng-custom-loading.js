@@ -16,37 +16,44 @@ angular.module('ng-custom-loading', [])
 
           if (val) {
 
-            var htmlLoadingTemplate = '';
+            if (attrs.loadingTemplateUrl) {
 
-            if (attrs.loadingTemplate) {
+              $http.get(attrs.loadingTemplateUrl).then(function(d) {
 
-              $http.get(attrs.loadingTemplate).then(function(d) {
-
-                htmlLoadingTemplate = d.data
-                return Promise.resolve(htmlLoadingTemplate)
+                return Promise.resolve(d.data);
 
               }, function(e) {
 
-                return Promise.resolve(htmlLoadingTemplate)
+                return Promise.resolve('');
 
               }).then(function(html) {
-                element.html(html)
-                $compile(element.contents())(scope)
-              })
-            } else {
 
-              element.html(htmlLoadingTemplate)
-              $compile(element.contents())(scope)
+                element.html(html);
+                $compile(element.contents())(scope);
+
+              });
+            } else 
+            if (attrs.loadingTemplate) {
+
+              element.html(attrs.loadingTemplate);
+              $compile(element.contents())(scope);
+
+            }
+            else {
+
+              element.html('');
+              $compile(element.contents())(scope);
 
             }
           } else {
 
-            var htmlComponent = innerHtml
-            element.html(htmlComponent)
-            $compile(element.contents())(scope)
+            var htmlComponent = innerHtml;
+            element.html(htmlComponent);
+            $compile(element.contents())(scope);
             
-            setTimeout(function() { scope.$digest() }, 300) 
           }
+          
+          setTimeout(function() { scope.$digest() }, 300); 
         })
       }
     }
